@@ -40,13 +40,25 @@ form.addEventListener('submit', async (e) => {
   btn.textContent = 'Sending…';
   showStatus('');
 
-  // Simulate sending (replace with a real endpoint / EmailJS / Formspree, etc.)
-  await new Promise(r => setTimeout(r, 1200));
+  try {
+    const res = await fetch('https://formspree.io/f/xjgayjpl', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form),
+    });
+
+    if (res.ok) {
+      form.reset();
+      showStatus('Message sent! I\'ll get back to you soon.');
+    } else {
+      showStatus('Something went wrong. Please try again.', true);
+    }
+  } catch {
+    showStatus('Network error. Please try again.', true);
+  }
 
   btn.disabled = false;
   btn.textContent = 'Send message';
-  form.reset();
-  showStatus('Message sent! I\'ll get back to you soon.');
 });
 
 function showStatus(msg, isError = false) {

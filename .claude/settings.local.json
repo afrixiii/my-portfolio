@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:www.canva.com)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(ssh -T git@github.com)",
+      "Read(//c/Users/afrid/**)"
+    ]
+  }
+}
